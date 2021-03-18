@@ -1,0 +1,15 @@
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\bin\Debug\netcoreapp3.1\BitirmeProjesi.Data.deps.json
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\bin\Debug\netcoreapp3.1\BitirmeProjesi.Data.runtimeconfig.json
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\bin\Debug\netcoreapp3.1\BitirmeProjesi.Data.runtimeconfig.dev.json
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\bin\Debug\netcoreapp3.1\BitirmeProjesi.Data.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\bin\Debug\netcoreapp3.1\BitirmeProjesi.Data.pdb
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\bin\Debug\netcoreapp3.1\BitirmeProjesi.Core.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\bin\Debug\netcoreapp3.1\BitirmeProjesi.Core.pdb
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp3.1\BitirmeProjesi.Data.csprojAssemblyReference.cache
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp3.1\BitirmeProjesi.Data.AssemblyInfoInputs.cache
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp3.1\BitirmeProjesi.Data.AssemblyInfo.cs
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp3.1\BitirmeProjesi.Data.csproj.CopyComplete
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp3.1\BitirmeProjesi.Data.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp3.1\BitirmeProjesi.Data.pdb
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp3.1\BitirmeProjesi.Data.genruntimeconfig.cache
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp3.1\BitirmeProjesi.Data.csproj.CoreCompileInputs.cache

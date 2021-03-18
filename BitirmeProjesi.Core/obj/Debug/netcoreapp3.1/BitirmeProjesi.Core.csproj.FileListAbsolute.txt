@@ -1,0 +1,9 @@
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Core\bin\Debug\netcoreapp3.1\BitirmeProjesi.Core.deps.json
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Core\bin\Debug\netcoreapp3.1\BitirmeProjesi.Core.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Core\bin\Debug\netcoreapp3.1\BitirmeProjesi.Core.pdb
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Core\obj\Debug\netcoreapp3.1\BitirmeProjesi.Core.AssemblyInfoInputs.cache
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Core\obj\Debug\netcoreapp3.1\BitirmeProjesi.Core.AssemblyInfo.cs
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Core\obj\Debug\netcoreapp3.1\BitirmeProjesi.Core.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Core\obj\Debug\netcoreapp3.1\BitirmeProjesi.Core.pdb
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Core\obj\Debug\netcoreapp3.1\BitirmeProjesi.Core.csprojAssemblyReference.cache
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Core\obj\Debug\netcoreapp3.1\BitirmeProjesi.Core.csproj.CoreCompileInputs.cache
