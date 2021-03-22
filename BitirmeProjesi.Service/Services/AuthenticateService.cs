@@ -81,9 +81,19 @@ namespace BitirmeProjesi.Service.Services
             return user;
         }
 
-        public async Task<ApplicationUser> WhoAmI()
+        public async Task<Guid> ChangePassword(string currentPassword, string newPassword)
         {
-            
+            var dbUser = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
+            if(await _userManager.CheckPasswordAsync(dbUser, currentPassword))
+            {
+                await _userManager.ChangePasswordAsync(dbUser, currentPassword, newPassword);
+            }
+            return dbUser.Id;
+        }
+        
+
+        public async Task<ApplicationUser> WhoAmI()
+        {   
             var dbUser = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
 
             return dbUser;

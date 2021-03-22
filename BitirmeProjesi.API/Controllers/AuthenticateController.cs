@@ -19,7 +19,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BitirmeProjesi.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
@@ -44,7 +44,14 @@ namespace BitirmeProjesi.API.Controllers
             }
             return Ok(user);
         }
-
+        [Authorize]
+        [HttpPost]
+        [Route("change-password")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto model)
+        {
+            await _authenticateService.ChangePassword(model.CurrentPassword, model.NewPassword);
+            return Ok();
+        }
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto model)

@@ -11,6 +11,7 @@ namespace BitirmeProjesi.Core.Services
     {
         Task<JwtSecurityToken> Login(string username, string password);
         Task<ApplicationUser> Register(string email, string username, string password);
+        Task<Guid> ChangePassword(string currentPassword, string newPassword);
         Task<ApplicationUser> WhoAmI();
 
     }
