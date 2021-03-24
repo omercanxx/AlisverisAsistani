@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -30,6 +31,16 @@ namespace BitirmeProjesi.API.Controllers
         public async Task<IActionResult> GetById(Guid id)
         {
             return Ok(_mapper.Map<ProductDto>(await _productService.GetByIdAsync(id)));
+        }
+        [HttpPost("UploadFile")]
+        public async Task<IActionResult> UploadFile([FromForm] IFormFile file)
+        {
+            string path = Path.Combine("C:\\Users\\omer6\\OneDrive\\Masaüstü\\" + file.FileName);
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+            return Ok();
         }
     }
 }
