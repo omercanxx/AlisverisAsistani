@@ -40,5 +40,12 @@ namespace BitirmeProjesi.Data.Repository
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Product> GetWithCommentsByIdAsync(Guid productId)
+        {
+            return await appDbContext.Products
+                .Include(p => p.ProductComments)
+                .SingleOrDefaultAsync(x => x.Id == productId);
+        }
     }
 }

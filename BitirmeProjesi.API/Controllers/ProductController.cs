@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BitirmeProjesi.API.DTOs;
+using BitirmeProjesi.Core.Entities;
 using BitirmeProjesi.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,12 @@ namespace BitirmeProjesi.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
+        private readonly IProductCommentService _productCommentService;
         private readonly IMapper _mapper;
-        public ProductController(IProductService productService, IMapper mapper)
+        public ProductController(IProductService productService, IProductCommentService productCommentService, IMapper mapper)
         {
             _productService = productService;
+            _productCommentService = productCommentService;
             _mapper = mapper;
         }
         [HttpGet]
@@ -42,5 +45,12 @@ namespace BitirmeProjesi.API.Controllers
             }
             return Ok();
         }
+        [HttpPost("comments")]
+        public async Task<IActionResult> Save(ProductCommentSaveDto productComment)
+        {
+            var newComment = await _productCommentService.Save(productComment.ProductId, productComment.Comment, productComment.IsAnonym);
+            return Created(string.Empty, _mapper.Map<ProductCommentSaveDto>(newComment));
+        }
+
     }
 }

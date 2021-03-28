@@ -11,5 +11,6 @@ namespace BitirmeProjesi.Core.Services
         Task<Product> GetWithCategoriesByIdAsync(Guid productId);
         Task<IEnumerable<Product>> GetWithStoresByIdAsync(Guid productId);
         Task<Product> GetWithSupplementsByIdAsync(Guid productId);
+        Task<Product> GetWithCommentsByIdAsync(Guid productId);
     }
 }

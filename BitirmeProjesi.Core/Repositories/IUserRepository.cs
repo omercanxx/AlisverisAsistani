@@ -9,5 +9,6 @@ namespace BitirmeProjesi.Core.Repositories
     public interface IUserRepository : ICustomRepository<ApplicationUser>
     {
         Task<ApplicationUser> GetUserWithFavoriteProducts(string username);
+        Task<Guid> GetUserIdByUsername(string username);
     }
 }

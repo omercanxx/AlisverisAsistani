@@ -10,6 +10,7 @@ namespace BitirmeProjesi.Core.Repositories
     {
         Task<Product> GetWithCategoriesByIdAsync(Guid productId);
         Task<IEnumerable<Product>> GetWithStoresByIdAsync(Guid productId);
+        Task<Product> GetWithCommentsByIdAsync(Guid productId);
         Task<Product> GetWithSupplementsByIdAsync(Guid productId);
         Task<Product> GetWithProductTypesByIdAsync(Guid productId);
     }

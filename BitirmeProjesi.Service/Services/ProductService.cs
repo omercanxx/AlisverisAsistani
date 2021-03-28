@@ -21,6 +21,11 @@ namespace BitirmeProjesi.Service.Services
             return await _unitOfWork.Products.GetWithCategoriesByIdAsync(productId);
         }
 
+        public async Task<Product> GetWithCommentsByIdAsync(Guid productId)
+        {
+            return await _unitOfWork.Products.GetWithCommentsByIdAsync(productId);
+        }
+
         public async Task<IEnumerable<Product>> GetWithStoresByIdAsync(Guid productId)
         {
             return await _unitOfWork.Products.GetWithStoresByIdAsync(productId);

@@ -24,6 +24,12 @@ namespace BitirmeProjesi.API.Mapping
             CreateMap<ProductDto, Product>();
             #endregion
 
+
+            #region ProductComment
+            CreateMap<ProductComment, ProductCommentSaveDto>();
+            CreateMap<ProductCommentSaveDto, ProductComment>();
+            #endregion
+
             #region Users
             CreateMap<ApplicationUser, UserDto>();
             CreateMap<UserDto, ApplicationUser>();

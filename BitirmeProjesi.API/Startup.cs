@@ -47,7 +47,7 @@ namespace BitirmeProjesi.API
             //Servis katmanýnda Username bilgisini çekebilmemiz için gerekli
             services.AddTransient<UserService>();
             services.AddTransient<AuthenticateService>();
-
+            services.AddTransient<ProductCommentService>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -57,6 +57,7 @@ namespace BitirmeProjesi.API
             services.AddScoped<IAuthenticateService, AuthenticateService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductCommentService, ProductCommentService>();
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString(), o =>

@@ -21,5 +21,11 @@ namespace BitirmeProjesi.Data.Repository
                 .ThenInclude(ufP => ufP.Product)
                 .SingleOrDefaultAsync(u => u.UserName == username);
         }
+
+        public async Task<Guid> GetUserIdByUsername(string username)
+        {
+            var dbUser = await _appDbContext.Users.SingleOrDefaultAsync(u => u.UserName == username);
+            return dbUser.Id;
+        }
     }
 }

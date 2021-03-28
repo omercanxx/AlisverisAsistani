@@ -14,6 +14,7 @@ namespace BitirmeProjesi.Data.UnitOfWorks
         private ProductRepository _productRepository;
         private CategoryRepository _categoryRepository;
         private UserRepository _userRepository;
+        private ProductCommentRepository _productCommentRepository;
         public UnitOfWork(AppDbContext appDbContext)
         {
             _context = appDbContext;
@@ -24,6 +25,7 @@ namespace BitirmeProjesi.Data.UnitOfWorks
         public ICategoryRepository Categories => _categoryRepository = _categoryRepository ?? new CategoryRepository(_context);
 
         public IUserRepository Users => _userRepository = _userRepository ?? new UserRepository(_context);
+        public IProductCommentRepository ProductComments => _productCommentRepository  = _productCommentRepository ?? new ProductCommentRepository(_context);
 
         public void Commit()
         {
