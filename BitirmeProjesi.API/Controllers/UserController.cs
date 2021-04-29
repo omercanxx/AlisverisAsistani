@@ -17,12 +17,10 @@ namespace BitirmeProjesi.API.Controllers
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        public UserController(IUserService userService, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
             _mapper = mapper;
-            _httpContextAccessor = httpContextAccessor;
         }
         [Authorize]
         [HttpGet("favorite-products")]

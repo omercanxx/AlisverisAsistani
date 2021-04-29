@@ -33,24 +33,25 @@ namespace BitirmeProjesi.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            return Ok(_mapper.Map<ProductDto>(await _productService.GetByIdAsync(id)));
+            return Ok(await _productService.GetProductAsync(id));
         }
         [HttpPost("UploadFile")]
-        public async Task<IActionResult> UploadFile([FromForm] IFormFile file)
+        public async Task<IActionResult> UploadFile([FromForm] ProductSaveDto product)
         {
-            string path = Path.Combine("C:\\Users\\omer6\\OneDrive\\Masaüstü\\" + file.FileName);
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-            return Ok();
+            var newProduct = await _productService.Save(product.ProductTypeId, product.StoreId, product.Images, product.Name, product.Stock, product.Size, product.Barcode, product.ProductNo, product.Color, product.Price);
+            return Ok(newProduct.Id);
         }
-        [HttpPost("comments")]
-        public async Task<IActionResult> Save(ProductCommentSaveDto productComment)
+        [HttpPost("AddComment")]
+        public async Task<IActionResult> AddComment(ProductCommentSaveDto productComment)
         {
             var newComment = await _productCommentService.Save(productComment.ProductId, productComment.Comment, productComment.IsAnonym);
-            return Created(string.Empty, _mapper.Map<ProductCommentSaveDto>(newComment));
+            return Ok(newComment.Id);
         }
-
+        [HttpGet("comments/{productId}")]
+        public async Task<IActionResult> GetComments(Guid productId)
+        {
+            var dbComments = await _productCommentService.GetWithUserByIdAsync(productId);
+            return Ok(_mapper.Map<List<ProductCommentDto>>(dbComments));
+        }
     }
 }

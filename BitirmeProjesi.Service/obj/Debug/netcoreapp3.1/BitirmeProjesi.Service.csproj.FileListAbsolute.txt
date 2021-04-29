@@ -12,3 +12,6 @@ C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Service\obj\Debug\netc
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Service\obj\Debug\netcoreapp3.1\BitirmeProjesi.Service.csproj.CopyComplete
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Service\obj\Debug\netcoreapp3.1\BitirmeProjesi.Service.dll
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Service\obj\Debug\netcoreapp3.1\BitirmeProjesi.Service.pdb
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Service\bin\Debug\netcoreapp3.1\BitirmeProjesi.Service.runtimeconfig.json
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Service\bin\Debug\netcoreapp3.1\BitirmeProjesi.Service.runtimeconfig.dev.json
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.Service\obj\Debug\netcoreapp3.1\BitirmeProjesi.Service.genruntimeconfig.cache

@@ -8,6 +8,6 @@ namespace BitirmeProjesi.Core.Repositories
 {
     public interface IProductCommentRepository : ICustomRepository<ProductComment>
     {
-        Task<ProductComment> GetWithProductByIdAsync(Guid productCommentId);
+        Task<List<ProductComment>> GetWithUserByIdAsync(Guid productId);
     }
 }

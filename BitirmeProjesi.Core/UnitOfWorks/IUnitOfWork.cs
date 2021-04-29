@@ -12,6 +12,10 @@ namespace BitirmeProjesi.Core.UnitOfWorks
         ICategoryRepository Categories { get; }
         IUserRepository Users { get; }
         IProductCommentRepository ProductComments { get; }
+        IProduct_ImageRepository Product_Images { get; }
+        IImageRepository Images { get; }
+        IProduct_StoreRepository Product_Stores{ get; }
+        IStoreRepository Stores { get; }
         Task CommitAsync();
         void Commit();
     }

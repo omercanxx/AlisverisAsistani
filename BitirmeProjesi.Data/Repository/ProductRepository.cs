@@ -15,6 +15,14 @@ namespace BitirmeProjesi.Data.Repository
         public ProductRepository(AppDbContext context) : base(context)
         {
         }
+        public async Task<Product> GetProductAsync(Guid productId)
+        {
+            return await appDbContext.Products
+                .Include(p => p.ProductType).ThenInclude(pt => pt.Category)
+                .Include(p => p.ProductComments)
+                .Include(p => p.Product_Image).ThenInclude(p => p.Image)
+                .SingleOrDefaultAsync(x => x.Id == productId);
+        }
         public async Task<Product> GetWithCategoriesByIdAsync(Guid productId)
         {
             return await appDbContext.Products
@@ -32,11 +40,10 @@ namespace BitirmeProjesi.Data.Repository
             return await appDbContext.Products
                 .Include(p => p.Product_Store)
                 .ThenInclude(ps => ps.Store)
-                .ThenInclude(s => s.User)
                 .SingleOrDefaultAsync(x => x.Id == productId);
         }
 
-        public Task<Product> GetWithSupplementsByIdAsync(Guid productId)
+        public async Task<Product> GetWithSupplementsByIdAsync(Guid productId)
         {
             throw new NotImplementedException();
         }
@@ -46,6 +53,18 @@ namespace BitirmeProjesi.Data.Repository
             return await appDbContext.Products
                 .Include(p => p.ProductComments)
                 .SingleOrDefaultAsync(x => x.Id == productId);
+        }
+
+        public async Task<IEnumerable<Store>> GetStoresWithBarcode(string barcode)
+        {
+            var product = await appDbContext.Products
+                .Include(s => s.Product_Store)
+                .ThenInclude(ps => ps.Store)
+                .Where(p => p.Barcode == barcode).FirstOrDefaultAsync();
+
+
+            var stores = product.Product_Store.Select(ps => ps.Store);
+            return stores;
         }
     }
 }

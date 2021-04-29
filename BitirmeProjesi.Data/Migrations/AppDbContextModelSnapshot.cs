@@ -109,6 +109,9 @@ namespace BitirmeProjesi.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -117,40 +120,32 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<Guid?>("UserId")
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("BitirmeProjesi.Core.Entities.Image", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sort")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("f6d8a67d-0ec4-48c0-91a3-b7a523550150"),
-                            IsActive = true,
-                            Name = "Gömlek"
-                        },
-                        new
-                        {
-                            Id = new Guid("a3800423-5c68-4564-a278-e6aa5e0493e5"),
-                            IsActive = true,
-                            Name = "Pantolon"
-                        },
-                        new
-                        {
-                            Id = new Guid("e040998b-b168-4d47-9ac4-67b1037aa779"),
-                            IsActive = true,
-                            Name = "Şapka"
-                        },
-                        new
-                        {
-                            Id = new Guid("6708aa90-f527-4233-b4b1-c2aeb3e22234"),
-                            IsActive = true,
-                            Name = "Kazak"
-                        });
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Core.Entities.Product", b =>
@@ -166,8 +161,8 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<int>("Color")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -187,64 +182,22 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<Guid>("ProductTypeId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
                     b.Property<int>("Stock")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductTypeId");
 
-                    b.ToTable("Products");
+                    b.HasIndex("UserId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("38d68adc-8444-4c69-b57e-205fbc830bd6"),
-                            Barcode = "111111",
-                            Color = 1,
-                            IsActive = true,
-                            Name = "Klasik Gömlek",
-                            Price = 115m,
-                            ProductNo = "111",
-                            ProductTypeId = new Guid("cf31a586-6e0e-435c-bd2c-cdd984df1468"),
-                            Stock = 100
-                        },
-                        new
-                        {
-                            Id = new Guid("e06f36da-7a54-4848-9147-74f891360d05"),
-                            Barcode = "111112",
-                            Color = 2,
-                            IsActive = true,
-                            Name = "Klasik Gömlek",
-                            Price = 115m,
-                            ProductNo = "111",
-                            ProductTypeId = new Guid("cf31a586-6e0e-435c-bd2c-cdd984df1468"),
-                            Stock = 150
-                        },
-                        new
-                        {
-                            Id = new Guid("b198d9a3-faf4-4b32-9dc4-2bc19913b83c"),
-                            Barcode = "222111",
-                            Color = 1,
-                            IsActive = true,
-                            Name = "Spor Gömlek",
-                            Price = 50m,
-                            ProductNo = "222",
-                            ProductTypeId = new Guid("32a0c082-e77b-4b9e-a876-e45a22f039b5"),
-                            Stock = 180
-                        },
-                        new
-                        {
-                            Id = new Guid("e58a5840-e80c-475b-86bd-448a40f80c90"),
-                            Barcode = "222112",
-                            Color = 1,
-                            IsActive = true,
-                            Name = "Spor Gömlek",
-                            Price = 50m,
-                            ProductNo = "222",
-                            ProductTypeId = new Guid("32a0c082-e77b-4b9e-a876-e45a22f039b5"),
-                            Stock = 200
-                        });
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Core.Entities.ProductComment", b =>
@@ -256,8 +209,8 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CommentStatu")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -286,19 +239,16 @@ namespace BitirmeProjesi.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsAnonym")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Rate")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RateStatu")
                         .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
@@ -322,6 +272,9 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -332,23 +285,22 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ProductType");
+                    b.ToTable("ProductTypes");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("cf31a586-6e0e-435c-bd2c-cdd984df1468"),
-                            CategoryId = new Guid("f6d8a67d-0ec4-48c0-91a3-b7a523550150"),
-                            IsActive = true,
-                            Name = "Klasik"
-                        },
-                        new
-                        {
-                            Id = new Guid("32a0c082-e77b-4b9e-a876-e45a22f039b5"),
-                            CategoryId = new Guid("f6d8a67d-0ec4-48c0-91a3-b7a523550150"),
-                            IsActive = true,
-                            Name = "Spor"
-                        });
+            modelBuilder.Entity("BitirmeProjesi.Core.Entities.Product_Image", b =>
+                {
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ImageId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ProductId", "ImageId");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("Product_Images");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Core.Entities.Product_Store", b =>
@@ -375,23 +327,24 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CityId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longtitude")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Stores");
                 });
@@ -543,13 +496,6 @@ namespace BitirmeProjesi.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BitirmeProjesi.Core.Entities.Category", b =>
-                {
-                    b.HasOne("BitirmeProjesi.Core.Entities.ApplicationUser", "User")
-                        .WithMany("Categories")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("BitirmeProjesi.Core.Entities.Product", b =>
                 {
                     b.HasOne("BitirmeProjesi.Core.Entities.ProductType", "ProductType")
@@ -557,6 +503,10 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("BitirmeProjesi.Core.Entities.ApplicationUser", "User")
+                        .WithMany("Products")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Core.Entities.ProductComment", b =>
@@ -598,6 +548,21 @@ namespace BitirmeProjesi.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("BitirmeProjesi.Core.Entities.Product_Image", b =>
+                {
+                    b.HasOne("BitirmeProjesi.Core.Entities.Image", "Image")
+                        .WithMany("Product_Image")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BitirmeProjesi.Core.Entities.Product", "Product")
+                        .WithMany("Product_Image")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BitirmeProjesi.Core.Entities.Product_Store", b =>
                 {
                     b.HasOne("BitirmeProjesi.Core.Entities.Product", "Product")
@@ -609,15 +574,6 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasOne("BitirmeProjesi.Core.Entities.Store", "Store")
                         .WithMany("Product_Store")
                         .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BitirmeProjesi.Core.Entities.Store", b =>
-                {
-                    b.HasOne("BitirmeProjesi.Core.Entities.ApplicationUser", "User")
-                        .WithMany("Stores")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -48,6 +48,7 @@ namespace BitirmeProjesi.API
             services.AddTransient<UserService>();
             services.AddTransient<AuthenticateService>();
             services.AddTransient<ProductCommentService>();
+            services.AddTransient<ProductService>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -57,6 +58,7 @@ namespace BitirmeProjesi.API
             services.AddScoped<IAuthenticateService, AuthenticateService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IStoreService, StoreService>();
             services.AddScoped<IProductCommentService, ProductCommentService>();
             services.AddDbContext<AppDbContext>(options =>
             {

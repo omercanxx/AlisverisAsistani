@@ -10,7 +10,8 @@ namespace BitirmeProjesi.Core.Services
     public interface IAuthenticateService
     {
         Task<JwtSecurityToken> Login(string username, string password);
-        Task<ApplicationUser> Register(string email, string username, string password);
+        Task<JwtSecurityToken> Register(string email, string username, string password);
+        Task<JwtSecurityToken> RegisterAdmin(string email, string username, string password);
         Task<Guid> ChangePassword(string currentPassword, string newPassword);
         Task<ApplicationUser> WhoAmI();
 

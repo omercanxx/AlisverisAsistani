@@ -68,44 +68,24 @@ namespace BitirmeProjesi.API.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto model)
         {
-            return Ok(_mapper.Map<UserDto>(await _authenticateService.Register(model.Email, model.Username, model.Password)));
+            var token = await _authenticateService.Register(model.Email, model.Username, model.Password);
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo
+            });
         }
 
-        /*[HttpPost]
+        [HttpPost]
         [Route("register-admin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterDto model)
         {
-            var userExists = await _userManager.FindByNameAsync(model.Username);
-            if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError);
-
-            ApplicationUser user = new ApplicationUser()
+            var token = await _authenticateService.RegisterAdmin(model.Email, model.Username, model.Password);
+            return Ok(new
             {
-                Email = model.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
-            };
-            var result = await _userManager.CreateAsync(user, model.Password);
-            if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError);
-
-            if (!await _roleManager.RoleExistsAsync("Admin"))
-            {
-                UserRoles role = new UserRoles()
-                {
-                    Name = "Admin"
-                };
-                await _roleManager.CreateAsync(role);
-            }
-            /*if (!await _roleManager.RoleExistsAsync("User"))
-                await _roleManager.CreateAsync(new IdentityRole { (Name ) });
-
-            if (await _roleManager.RoleExistsAsync("Admin"))
-            {
-                await _userManager.AddToRoleAsync(user, "Admin");
-            }
-            
-            return Ok(new ResponseDto { Status = "Success", Message = "User created successfully!" });
-        }*/
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo
+            });
+        }
     }
 }

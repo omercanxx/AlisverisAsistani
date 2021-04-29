@@ -21,17 +21,19 @@ namespace BitirmeProjesi.API.Mapping
 
             #region Products
             CreateMap<Product, ProductDto>();
-            CreateMap<ProductDto, Product>();
+            CreateMap<ProductSaveDto, ProductComment>();
             #endregion
 
-
             #region ProductComment
-            CreateMap<ProductComment, ProductCommentSaveDto>();
             CreateMap<ProductCommentSaveDto, ProductComment>();
+            CreateMap<ProductComment, ProductCommentDto>()
+                .ForMember(opt => opt.Username, dest => dest
+                .MapFrom(pc => (pc.IsAnonym== true) ? pc.User.UserName.Substring(0,2).PadRight(pc.User.UserName.Length, '*') : pc.User.UserName));
             #endregion
 
             #region Users
             CreateMap<ApplicationUser, UserDto>();
+            CreateMap<ApplicationUser, RegisterDto>();
             CreateMap<UserDto, ApplicationUser>();
 
             CreateMap<ApplicationUser_FavoriteProduct, User_FavoriteProductDto>();

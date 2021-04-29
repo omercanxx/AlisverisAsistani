@@ -18,9 +18,9 @@ namespace BitirmeProjesi.Service.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<ProductComment> GetWithProductByIdAsync(Guid productId)
+        public async Task<List<ProductComment>> GetWithUserByIdAsync(Guid productId)
         {
-            return await _unitOfWork.ProductComments.GetWithProductByIdAsync(productId);
+            return await _unitOfWork.ProductComments.GetWithUserByIdAsync(productId);
         }
 
         public async Task<ProductComment> Save(Guid productId, string comment, bool isAnonym)

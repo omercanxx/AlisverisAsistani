@@ -10,5 +10,6 @@ namespace BitirmeProjesi.Core.Services
     {
         Task<Store> GetWithProductsByIdAsync(int storeId);
         Task<Store> GetWithCitiesByIdAsync(int storeId);
+        Task<Store> GetStoresWithBarcode(string barcode, double longtitude, double latitude);
     }
 }

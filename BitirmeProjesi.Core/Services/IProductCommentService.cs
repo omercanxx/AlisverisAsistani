@@ -8,7 +8,7 @@ namespace BitirmeProjesi.Core.Services
 {
     public interface IProductCommentService : ICustomService<ProductComment>
     {
-        Task<ProductComment> GetWithProductByIdAsync(Guid productId);
+        Task<List<ProductComment>> GetWithUserByIdAsync(Guid productId);
         Task<ProductComment> Save(Guid productId, string Comment, bool IsAnonym);
     }
 }

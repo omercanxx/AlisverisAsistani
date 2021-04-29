@@ -3,6 +3,7 @@ using BitirmeProjesi.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +15,10 @@ namespace BitirmeProjesi.Data.Repository
         public ProductCommentRepository(AppDbContext context) : base(context)
         {
         }
-        public async Task<ProductComment> GetWithProductByIdAsync(Guid productCommentId)
+        public async Task<List<ProductComment>> GetWithUserByIdAsync(Guid productId)
         {
-            return await _appDbContext.ProductComments.Include(pc => pc.Product).SingleOrDefaultAsync(pc => pc.Id == productCommentId);
+            return await _appDbContext.ProductComments.Include(pc => pc.User).Where(pc => pc.ProductId == productId).ToListAsync();
+
         }
     }
 }

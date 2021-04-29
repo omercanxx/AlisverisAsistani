@@ -9,12 +9,12 @@ namespace BitirmeProjesi.Core.Entities
         public Category()
         {
             IsActive = true;
+            CreatedOn = DateTime.Now;
         }
         public Guid Id { get; set; }
-        public Guid? UserId { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
-        public virtual ApplicationUser User { get; set; }
+        public DateTime CreatedOn { get; set; }
         public ICollection<ProductType> ProductTypes { get; set; }
     }
 }
