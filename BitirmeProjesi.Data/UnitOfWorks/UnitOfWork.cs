@@ -17,6 +17,7 @@ namespace BitirmeProjesi.Data.UnitOfWorks
         private ProductCommentRepository _productCommentRepository;
         private Product_ImageRepository _product_ImageRepository;
         private Product_StoreRepository _product_StoreRepository;
+        private User_FavoriteProductRepository _user_FavoriteProductRepository;
         private StoreRepository _storeRepository;
         private ImageRepository _imageRepository;
         public UnitOfWork(AppDbContext appDbContext)
@@ -33,6 +34,7 @@ namespace BitirmeProjesi.Data.UnitOfWorks
         public IProduct_ImageRepository Product_Images => _product_ImageRepository = _product_ImageRepository ?? new Product_ImageRepository(_context);
         public IImageRepository Images => _imageRepository = _imageRepository ?? new ImageRepository(_context);
         public IProduct_StoreRepository Product_Stores => _product_StoreRepository = _product_StoreRepository ?? new Product_StoreRepository(_context);
+        public IUser_FavoriteProductRepository User_FavoriteProducts => _user_FavoriteProductRepository= _user_FavoriteProductRepository ?? new User_FavoriteProductRepository(_context);
         public IStoreRepository Stores => _storeRepository = _storeRepository ?? new StoreRepository(_context);
         public void Commit()
         {

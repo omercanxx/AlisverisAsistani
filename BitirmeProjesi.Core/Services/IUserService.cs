@@ -9,6 +9,8 @@ namespace BitirmeProjesi.Core.Services
 {
     public interface IUserService : ICustomService<ApplicationUser>
     {
-        Task<ApplicationUser> GetUserWithFavoriteProducts();
+        Task<List<Product>> GetMyFavoriteProducts();
+        Task<List<Product>> GetMyCommentedProducts();
+        Task<Guid> AddFavoriteProducts(Guid productId);
     }
 }

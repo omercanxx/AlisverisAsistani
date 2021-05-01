@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BitirmeProjesi.API.DTOs;
+using BitirmeProjesi.API.DTOs.ProductCommentDtos;
+using BitirmeProjesi.API.DTOs.UserDtos;
 using BitirmeProjesi.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -24,9 +26,23 @@ namespace BitirmeProjesi.API.Controllers
         }
         [Authorize]
         [HttpGet("favorite-products")]
-        public async Task<IActionResult> WhoAmI()
+        public async Task<IActionResult> GetMyFavoriteProducts()
         {
-            return Ok(_mapper.Map<UserWithFavoriteProductsDto>(await _userService.GetUserWithFavoriteProducts()));
+            return Ok(_mapper.Map<IEnumerable<FavoriteProductDto>>(await _userService.GetMyFavoriteProducts()));
+        }
+        [Authorize]
+        [HttpGet("commented-products")]
+        public async Task<IActionResult> GetMyCommentedProducts()
+        {
+            var x = await _userService.GetMyCommentedProducts();
+            return Ok(_mapper.Map<List<CommentedProductDto>>(await _userService.GetMyCommentedProducts()));
+        }
+        [Authorize]
+        [HttpPost("favorite-products/{productId}")]
+        public async Task<IActionResult> AddFavoriteProduct(Guid productId)
+        {
+            await _userService.AddFavoriteProducts(productId);
+            return Ok(productId);
         }
     }
 }

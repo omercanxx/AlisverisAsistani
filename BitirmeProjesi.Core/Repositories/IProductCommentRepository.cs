@@ -9,5 +9,6 @@ namespace BitirmeProjesi.Core.Repositories
     public interface IProductCommentRepository : ICustomRepository<ProductComment>
     {
         Task<List<ProductComment>> GetWithUserByIdAsync(Guid productId);
+        Task<List<Product>> GetMyCommentedProducts(Guid userId);
     }
 }

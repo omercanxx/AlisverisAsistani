@@ -63,7 +63,7 @@ namespace BitirmeProjesi.Data.Repository
                 .Where(p => p.Barcode == barcode).FirstOrDefaultAsync();
 
 
-            var stores = product.Product_Store.Select(ps => ps.Store);
+            var stores = product.Product_Store.Select(ps => ps.Store).ToList();
             return stores;
         }
     }

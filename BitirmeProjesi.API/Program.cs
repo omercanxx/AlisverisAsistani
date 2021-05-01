@@ -34,7 +34,7 @@ namespace BitirmeProjesi.API
                 .Build();
 
             var webHost = /*WebHost.CreateDefaultBuilder(args)
-                .UseUrls($"https://192.168.1.12:{config.GetValue<int>("Host:Port")}")
+                .UseUrls($"https://192.168.1.155:{config.GetValue<int>("Host:Port")}")
                 .UseKestrel()
                 .UseStartup<Startup>();
                 */          WebHost.CreateDefaultBuilder(args)

@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://192.168.1.12:62755",
+      "applicationUrl": "http://192.168.1.155:62755",
       "sslPort": 62755
     }
   },
@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "http://192.168.1.12:62755",
+      "launchUrl": "http://192.168.1.155:62755",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,11 +20,11 @@
     "BitirmeProjesi.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "https://192.168.1.12:44354",
+      "launchUrl": "https://192.168.1.155:44354",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://192.168.1.12:44354;http://192.168.1.12:62755"
+      "applicationUrl": "https://192.168.1.155:44354;http://192.168.1.155:62755"
     }
   }
 }

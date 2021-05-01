@@ -23,6 +23,9 @@ namespace BitirmeProjesi.Data.Repository
         {
             return await appDbContext.Stores
                 .Include(p => p.Product_Store).ThenInclude(pt => pt.Product)
+                .Include(p => p.Product_Store).ThenInclude(pt => pt.Product).ThenInclude(p => p.Product_Image).ThenInclude(pi => pi.Image)
+                .Include(p => p.Product_Store).ThenInclude(pt => pt.Product).ThenInclude(p => p.ProductComments).ThenInclude(pc => pc.User)
+                .Include(p => p.Product_Store).ThenInclude(pt => pt.Product).ThenInclude(p => p.User_FavoriteProduct)
                 .SingleOrDefaultAsync(x => x.Id == storeId);
         }
 
@@ -33,9 +36,10 @@ namespace BitirmeProjesi.Data.Repository
                 Longtitude = x.Longtitude,
                 Latitude = x.Latitude,
                 Distance = GetDistance(longtitude, latitude, x.Longtitude, x.Latitude)
-            });
+            }).ToList();
 
-            return await appDbContext.Stores.Where(s => s.Id == storesWithDistances.OrderByDescending(s => s.Distance).FirstOrDefault().Id).FirstOrDefaultAsync();
+            var closestStoreId = storesWithDistances.OrderBy(s => s.Distance).FirstOrDefault().Id;
+            return await appDbContext.Stores.Where(s => s.Id == closestStoreId).SingleOrDefaultAsync();
         }
 
         private double GetDistance(double x1, double y1, double x2, double y2)
