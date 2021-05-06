@@ -26,7 +26,7 @@ namespace BitirmeProjesi.Data.Repository
                 .Include(pc => pc.Product)
                 .ThenInclude(p => p.Product_Image)
                 .ThenInclude(pi => pi.Image)
-                .Where(u => u.UserId == userId).ToListAsync();
+                .Where(u => u.UserId == userId && u.IsActive == true).ToListAsync();
 
             var products = dbProductComments.Select(pc => pc.Product).ToList();
             return products;

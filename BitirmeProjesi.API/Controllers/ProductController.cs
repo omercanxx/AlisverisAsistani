@@ -33,21 +33,21 @@ namespace BitirmeProjesi.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            return Ok(await _productService.GetProductAsync(id));
+            return Ok(_mapper.Map<ProductDto>(await _productService.GetProductAsync(id)));
         }
-        [HttpPost("UploadFile")]
-        public async Task<IActionResult> UploadFile([FromForm] ProductSaveDto product)
+        [HttpPost]
+        public async Task<IActionResult> AddProduct([FromForm] ProductSaveDto product)
         {
             var newProduct = await _productService.Save(product.ProductTypeId, product.StoreId, product.Images, product.Name, product.Stock, product.Size, product.Barcode, product.ProductNo, product.Color, product.Price);
             return Ok(newProduct.Id);
         }
-        [HttpPost("AddComment")]
+        [HttpPost("comment")]
         public async Task<IActionResult> AddComment(ProductCommentSaveDto productComment)
         {
             var newComment = await _productCommentService.Save(productComment.ProductId, productComment.Comment, productComment.IsAnonym);
             return Ok(newComment.Id);
         }
-        [HttpGet("comments/{productId}")]
+        [HttpGet("comment/{productId}")]
         public async Task<IActionResult> GetComments(Guid productId)
         {
             var dbComments = await _productCommentService.GetWithUserByIdAsync(productId);

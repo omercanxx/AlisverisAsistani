@@ -11,6 +11,8 @@ namespace BitirmeProjesi.Core.Services
     {
         Task<List<Product>> GetMyFavoriteProducts();
         Task<List<Product>> GetMyCommentedProducts();
-        Task<Guid> AddFavoriteProducts(Guid productId);
+        Task<List<Product>> GetMyScannedProducts();
+        Task<Guid> AddFavoriteProduct(Guid productId);
+        Task<Guid> RemoveFavoriteProduct(Guid productId);
     }
 }

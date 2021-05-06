@@ -19,5 +19,6 @@ namespace BitirmeProjesi.Core.Entities
         public bool IsActive { get; set; }
         public DateTime CreatedOn { get; set; }
         public ICollection<Product_Store> Product_Store { get; set; }
+        public ICollection<Scan> Scans { get; set; }
     }
 }

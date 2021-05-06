@@ -15,6 +15,8 @@ namespace BitirmeProjesi.Core.Repositories
         Task AddAsync(TEntity entity);
         Task AddRangeAsync(IEnumerable<TEntity> entities);
         void Remove(TEntity entity);
+        void Deactivate(TEntity entity);
+        void Activate(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
         TEntity Update(TEntity entity);
     }

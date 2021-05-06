@@ -45,7 +45,7 @@ namespace BitirmeProjesi.API.Mapping
 
             #region Categories
             CreateMap<Category, CategoryDto>();
-            CreateMap<CategoryDto, Category>();
+            CreateMap<AddCategoryDto, Category>();
             CreateMap<Category, CategoryWithProductsDto>();
             CreateMap<CategoryWithProductsDto, Category>();
             #endregion

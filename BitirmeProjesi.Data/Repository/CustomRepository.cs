@@ -51,7 +51,7 @@ namespace BitirmeProjesi.Data.Repository
 
         public void Remove(TEntity entity)
         {
-            TrySetProperty(entity, "IsActive", false);
+            _dbSet.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)
@@ -73,6 +73,16 @@ namespace BitirmeProjesi.Data.Repository
         public async Task<IEnumerable<TEntity>> Where(Expression<Func<TEntity, bool>> predicate)
         {
             return await _dbSet.Where(predicate).ToListAsync();
+        }
+
+        public void Deactivate(TEntity entity)
+        {
+            TrySetProperty(entity, "IsActive", false);
+        }
+
+        public void Activate(TEntity entity)
+        {
+            TrySetProperty(entity, "IsActive", true);
         }
     }
 }

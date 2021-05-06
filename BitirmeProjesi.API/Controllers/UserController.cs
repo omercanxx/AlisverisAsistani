@@ -18,31 +18,69 @@ namespace BitirmeProjesi.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IProductCommentService _productCommentService;
+        private readonly IStoreService _storeService;
         private readonly IMapper _mapper;
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(IUserService userService, IProductCommentService productCommentService, IStoreService storeService, IMapper mapper)
         {
             _userService = userService;
+            _productCommentService = productCommentService;
             _mapper = mapper;
+            _storeService = storeService;
+        }
+        #region Favorites
+        [Authorize]
+        [HttpPost("favorite/{productId}")]
+        public async Task<IActionResult> AddFavoriteProduct(Guid productId)
+        {
+            await _userService.AddFavoriteProduct(productId);
+            return Ok(productId);
         }
         [Authorize]
-        [HttpGet("favorite-products")]
+        [HttpDelete("favorite/{productId}")]
+        public async Task<IActionResult> RemoveFavoriteProduct(Guid productId)
+        {
+            await _userService.RemoveFavoriteProduct(productId);
+            return Ok(productId);
+        }
+        [Authorize]
+        [HttpGet("favorite")]
         public async Task<IActionResult> GetMyFavoriteProducts()
         {
             return Ok(_mapper.Map<IEnumerable<FavoriteProductDto>>(await _userService.GetMyFavoriteProducts()));
         }
+        #endregion
+
+        #region Comments
         [Authorize]
-        [HttpGet("commented-products")]
+        [HttpGet("comment")]
         public async Task<IActionResult> GetMyCommentedProducts()
         {
-            var x = await _userService.GetMyCommentedProducts();
             return Ok(_mapper.Map<List<CommentedProductDto>>(await _userService.GetMyCommentedProducts()));
         }
+
         [Authorize]
-        [HttpPost("favorite-products/{productId}")]
-        public async Task<IActionResult> AddFavoriteProduct(Guid productId)
+        [HttpDelete("comment/{productCommentId}")]
+        public async Task<IActionResult> RemoveProductComment(Guid productCommentId)
         {
-            await _userService.AddFavoriteProducts(productId);
-            return Ok(productId);
+            await _productCommentService.RemoveProductComment(productCommentId);
+            return Ok(productCommentId);
         }
+        #endregion
+
+        #region Scans
+        [HttpPost("scan")]
+        public async Task<IActionResult> Scan(ScanDto scan)
+        {
+            return Ok(_mapper.Map<StoreScanDto>(await _storeService.GetStoresWithBarcode(scan.Barcode, scan.Longitude, scan.Latitude)));
+        }
+
+        [Authorize]
+        [HttpGet("scan")]
+        public async Task<IActionResult> GetMyScannedProducts()
+        {
+            return Ok(_mapper.Map<List<CommentedProductDto>>(await _userService.GetMyScannedProducts()));
+        }
+        #endregion
     }
 }

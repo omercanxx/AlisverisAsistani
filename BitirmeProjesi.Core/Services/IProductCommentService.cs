@@ -10,5 +10,6 @@ namespace BitirmeProjesi.Core.Services
     {
         Task<List<ProductComment>> GetWithUserByIdAsync(Guid productId);
         Task<ProductComment> Save(Guid productId, string Comment, bool IsAnonym);
+        Task<Guid> RemoveProductComment(Guid productCommentId);
     }
 }

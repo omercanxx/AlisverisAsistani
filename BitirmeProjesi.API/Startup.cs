@@ -49,6 +49,7 @@ namespace BitirmeProjesi.API
             services.AddTransient<AuthenticateService>();
             services.AddTransient<ProductCommentService>();
             services.AddTransient<ProductService>();
+            services.AddTransient<StoreService>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IUnitOfWork, UnitOfWork>();

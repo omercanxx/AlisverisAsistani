@@ -21,11 +21,5 @@ namespace BitirmeProjesi.API.Controllers
             _storeService = storeService;
             _mapper = mapper;
         }
-        [HttpGet]
-        public async Task<IActionResult> Scan(ScanDto scan)
-        {
-            var x = await _storeService.GetStoresWithBarcode(scan.Barcode, scan.Longitude, scan.Latitude);
-            return Ok(_mapper.Map<StoreScanDto>(x));
-        }
     }
 }

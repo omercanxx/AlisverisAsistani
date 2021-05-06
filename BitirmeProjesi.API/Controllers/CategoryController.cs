@@ -25,7 +25,6 @@ namespace BitirmeProjesi.API.Controllers
             _categoryService = categoryService;
             _mapper = mapper;
         }
-        [Authorize(Roles = "admin")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

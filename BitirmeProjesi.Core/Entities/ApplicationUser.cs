@@ -15,6 +15,7 @@ namespace BitirmeProjesi.Core.Entities
         public ICollection<ProductComment> ProductComments { get; set; }
         public ICollection<ProductRate> ProductRates { get; set; }
         public ICollection<Product> Products { get; set; }
+        public ICollection<Scan> Scans { get; set; }
         public bool IsActive { get; set; }
     }
 }

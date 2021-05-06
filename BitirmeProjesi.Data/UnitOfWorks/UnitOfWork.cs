@@ -10,16 +10,18 @@ namespace BitirmeProjesi.Data.UnitOfWorks
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private AppDbContext _context;
-        private ProductRepository _productRepository;
-        private CategoryRepository _categoryRepository;
+        private AppDbContext _context; 
+        private StoreRepository _storeRepository;
+        private ImageRepository _imageRepository;
         private UserRepository _userRepository;
+        private CategoryRepository _categoryRepository;
+        private ScanRepository _scanRepository;
+        private ProductRepository _productRepository;
         private ProductCommentRepository _productCommentRepository;
         private Product_ImageRepository _product_ImageRepository;
         private Product_StoreRepository _product_StoreRepository;
         private User_FavoriteProductRepository _user_FavoriteProductRepository;
-        private StoreRepository _storeRepository;
-        private ImageRepository _imageRepository;
+
         public UnitOfWork(AppDbContext appDbContext)
         {
             _context = appDbContext;
@@ -36,6 +38,9 @@ namespace BitirmeProjesi.Data.UnitOfWorks
         public IProduct_StoreRepository Product_Stores => _product_StoreRepository = _product_StoreRepository ?? new Product_StoreRepository(_context);
         public IUser_FavoriteProductRepository User_FavoriteProducts => _user_FavoriteProductRepository= _user_FavoriteProductRepository ?? new User_FavoriteProductRepository(_context);
         public IStoreRepository Stores => _storeRepository = _storeRepository ?? new StoreRepository(_context);
+
+        public IScanRepository Scans => _scanRepository = _scanRepository ?? new ScanRepository(_context);
+
         public void Commit()
         {
             _context.SaveChanges();

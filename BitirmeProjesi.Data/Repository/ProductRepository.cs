@@ -30,6 +30,11 @@ namespace BitirmeProjesi.Data.Repository
                 .ThenInclude(pt => pt.Category)
                 .SingleOrDefaultAsync(x => x.Id == productId);
         }
+        public async Task<Product> GetProductByBarcodeAsync(string barcode)
+        {
+            return await appDbContext.Products
+                .SingleOrDefaultAsync(x => x.Barcode == barcode);
+        }
         public async Task<IEnumerable<Product>> GetWithStoresByIdAsync(Guid productId)
         {
             return await appDbContext.Products.Include(p => p.Product_Store).ThenInclude(pS => pS.Store).Where(p => p.Id == productId).ToListAsync();

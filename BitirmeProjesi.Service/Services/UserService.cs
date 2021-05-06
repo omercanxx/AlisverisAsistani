@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace BitirmeProjesi.Service.Services
             _userManager = userManager;
         }
 
-        public async Task<Guid> AddFavoriteProducts(Guid productId)
+        public async Task<Guid> AddFavoriteProduct(Guid productId)
         {
             var user = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
             if (user == null)
@@ -46,6 +47,13 @@ namespace BitirmeProjesi.Service.Services
                 throw new CustomException("Kullanıcı bulunamadı");
             return await _unitOfWork.ProductComments.GetMyCommentedProducts(user.Id);
         }
+        public async Task<List<Product>> GetMyScannedProducts()
+        {
+            var user = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
+            if (user == null)
+                throw new CustomException("Kullanıcı bulunamadı");
+            return await _unitOfWork.Scans.GetProductsByUserIdAsync(user.Id);
+        }
 
         public async Task<List<Product>> GetMyFavoriteProducts()
         {
@@ -53,6 +61,24 @@ namespace BitirmeProjesi.Service.Services
             if (user == null)
                 throw new CustomException("Kullanıcı bulunamadı");
             return await _unitOfWork.Users.GetMyFavoriteProducts(user.Id);
+        }
+
+        public async Task<Guid> RemoveFavoriteProduct(Guid productId)
+        {
+            var user = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
+            if (user == null)
+                throw new CustomException("Kullanıcı bulunamadı");
+
+            var dbFavoriteProductList = await _unitOfWork.User_FavoriteProducts.GetAllAsync();
+            var dbFavoriteProduct = dbFavoriteProductList.Where(f => f.UserId == user.Id && f.ProductId == productId).SingleOrDefault();
+
+            if(dbFavoriteProduct == null)
+                throw new CustomException("Kullanıcı bulunamadı");
+
+            _unitOfWork.User_FavoriteProducts.Remove(dbFavoriteProduct);
+
+            await _unitOfWork.CommitAsync();
+            return user.Id;
         }
     }
 }

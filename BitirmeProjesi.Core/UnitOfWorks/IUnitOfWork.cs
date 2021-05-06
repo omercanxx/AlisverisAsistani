@@ -17,6 +17,7 @@ namespace BitirmeProjesi.Core.UnitOfWorks
         IProduct_StoreRepository Product_Stores{ get; }
         IUser_FavoriteProductRepository User_FavoriteProducts { get; }
         IStoreRepository Stores { get; }
+        IScanRepository Scans { get; }
         Task CommitAsync();
         void Commit();
     }
