@@ -85,7 +85,7 @@ namespace BitirmeProjesi.Service.Services
                     string path = Path.Combine("C:\\inetpub\\wwwroot\\AlisverisAsistani\\ProductImages\\" + p);
                     Image image = new Image()
                     {
-                        Path = path,
+                        Path = $"ProductImages\\{p}",
                         Sort = sort
                     };
                     await _unitOfWork.Images.AddAsync(image);
@@ -104,7 +104,6 @@ namespace BitirmeProjesi.Service.Services
                     await _unitOfWork.Product_Images.AddAsync(product_Image);
                 }
             }
-
 
             await _unitOfWork.CommitAsync();
             return product;
