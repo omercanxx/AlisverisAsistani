@@ -10,6 +10,6 @@ namespace BitirmeProjesi.API.DTOs.UserDtos
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public List<FavoriteProductImageDto> ProductImages { get; set; }
+        public FavoriteProductImageDto ProductImage { get; set; }
     }
 }

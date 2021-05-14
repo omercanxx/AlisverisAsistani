@@ -19,14 +19,17 @@ namespace BitirmeProjesi.Data.Repository
         {
         }
 
-        public async Task<Store> GetWithProductsByIdAsync(Guid storeId)
+        public async Task<Store> GetWithProductsByIdAsync(Guid storeId, string productNo)
         {
-            return await appDbContext.Stores
+            var dbStore = await appDbContext.Stores
                 .Include(p => p.Product_Store).ThenInclude(pt => pt.Product)
                 .Include(p => p.Product_Store).ThenInclude(pt => pt.Product).ThenInclude(p => p.Product_Image).ThenInclude(pi => pi.Image)
                 .Include(p => p.Product_Store).ThenInclude(pt => pt.Product).ThenInclude(p => p.ProductComments).ThenInclude(pc => pc.User)
-                .Include(p => p.Product_Store).ThenInclude(pt => pt.Product).ThenInclude(p => p.User_FavoriteProduct)
-                .SingleOrDefaultAsync(x => x.Id == storeId);
+                .Include(p => p.Product_Store).ThenInclude(pt => pt.Product).ThenInclude(p => p.Scans)
+                .Include(p => p.Product_Store).ThenInclude(pt => pt.Product).ThenInclude(p => p.User_FavoriteProduct).SingleOrDefaultAsync(x => x.Id == storeId);
+            //Gönderilen productNo ile bir filtreleme işlemi yapılıyor.
+            dbStore.Product_Store = dbStore.Product_Store.Where(p => p.Product.ProductNo == productNo).ToList();
+            return dbStore;
         }
 
         public async Task<Store> GetClosestStoreAsync(IEnumerable<Store> stores, double longtitude, double latitude)

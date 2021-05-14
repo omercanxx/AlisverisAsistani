@@ -17,7 +17,8 @@ namespace BitirmeProjesi.API.DTOs.ScanDtos
         public int Size { get; set; }
         public string Barcode { get; set; }
         public string ProductNo { get; set; }
-        public int LikesNumber { get; set; }
+        public int LikeNumber { get; set; }
+        public int ScanNumber { get; set; }
         public List<ProductImagesScanDto> ProductImages { get; set; }
         public List<ProductCommentScanDto> ProductComments { get; set; }
     }

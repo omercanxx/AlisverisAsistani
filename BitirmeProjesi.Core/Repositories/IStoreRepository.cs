@@ -8,7 +8,7 @@ namespace BitirmeProjesi.Core.Repositories
 {
     public interface IStoreRepository :ICustomRepository<Store>
     {
-        Task<Store> GetWithProductsByIdAsync(Guid storeId);
+        Task<Store> GetWithProductsByIdAsync(Guid storeId, string productNo);
         Task<Store> GetClosestStoreAsync(IEnumerable<Store> stores, double longtitude, double latitude);
     }
 }

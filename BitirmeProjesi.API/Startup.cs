@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using BitirmeProjesi.API.Mapping;
 using BitirmeProjesi.Core.Entities;
 using BitirmeProjesi.Core.Repositories;
 using BitirmeProjesi.Core.Services;
@@ -20,6 +21,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,8 +44,6 @@ namespace BitirmeProjesi.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddHttpContextAccessor();
             //Servis katmanýnda Username bilgisini çekebilmemiz için gerekli
             services.AddTransient<UserService>();
             services.AddTransient<AuthenticateService>();

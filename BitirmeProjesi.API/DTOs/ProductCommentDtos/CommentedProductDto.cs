@@ -9,6 +9,6 @@ namespace BitirmeProjesi.API.DTOs.ProductCommentDtos
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public List<CommentedProductImageDto> ProductImages { get; set; }
+        public CommentedProductImageDto ProductImage { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace BitirmeProjesi.Service.Services
         public ImageService(IUnitOfWork unitOfWork, ICustomRepository<Image> repository) : base(unitOfWork, repository)
         {
         }
+
     }
 }
 

@@ -5,6 +5,7 @@ using BitirmeProjesi.Core.Services;
 using BitirmeProjesi.Core.UnitOfWorks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;

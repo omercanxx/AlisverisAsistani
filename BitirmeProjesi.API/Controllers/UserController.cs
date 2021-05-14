@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BitirmeProjesi.API.DTOs;
 using BitirmeProjesi.API.DTOs.ProductCommentDtos;
+using BitirmeProjesi.API.DTOs.ScanDtos;
 using BitirmeProjesi.API.DTOs.UserDtos;
 using BitirmeProjesi.Core.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -79,8 +80,9 @@ namespace BitirmeProjesi.API.Controllers
         [HttpGet("scan")]
         public async Task<IActionResult> GetMyScannedProducts()
         {
-            return Ok(_mapper.Map<List<CommentedProductDto>>(await _userService.GetMyScannedProducts()));
+            return Ok(_mapper.Map<List<ScannedProductDto>>(await _userService.GetMyScannedProducts()));
         }
+        
         #endregion
     }
 }

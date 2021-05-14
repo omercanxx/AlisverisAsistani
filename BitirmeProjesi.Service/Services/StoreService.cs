@@ -44,24 +44,38 @@ namespace BitirmeProjesi.Service.Services
             if (dbProduct == null)
                 throw new CustomException("Ürün bulunamadı");
 
+            if(_httpContextAccessor.HttpContext.User.Identity.Name != null)
+            {
+                var dbUser = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
+                if (dbUser == null)
+                    throw new CustomException("Kullanıcı bulunamadı");
+                Scan scan = new Scan()
+                {
+                    StoreId = dbClosestStore.Id,
+                    ProductId = dbProduct.Id,
+                    UserId = dbUser.Id
+                };
+                await _unitOfWork.Scans.AddAsync(scan);
+            }
             //User Bilgisi
-            var dbUser = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
-            if (dbUser == null)
-                throw new CustomException("Kullanıcı bulunamadı");
+            else
+            {
+                Scan scan = new Scan()
+                {
+                    StoreId = dbClosestStore.Id,
+                    ProductId = dbProduct.Id
+                };
+                await _unitOfWork.Scans.AddAsync(scan);
+            }
 
             //Logging
-            Scan scan = new Scan()
-            {
-                StoreId = dbClosestStore.Id,
-                ProductId = dbProduct.Id,
-                UserId = dbUser.Id
-            };
 
-            await _unitOfWork.Scans.AddAsync(scan);
+
+            
             await _unitOfWork.CommitAsync();
 
 
-            return await _unitOfWork.Stores.GetWithProductsByIdAsync(dbClosestStore.Id);
+            return await _unitOfWork.Stores.GetWithProductsByIdAsync(dbClosestStore.Id, dbProduct.ProductNo);
         }
     }
 }
