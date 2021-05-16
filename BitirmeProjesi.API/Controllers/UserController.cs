@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using BitirmeProjesi.API.DTOs;
-using BitirmeProjesi.API.DTOs.ProductCommentDtos;
-using BitirmeProjesi.API.DTOs.ScanDtos;
-using BitirmeProjesi.API.DTOs.UserDtos;
+using BitirmeProjesi.Core.DTOs;
+using BitirmeProjesi.Core.DTOs.ProductCommentDtos;
+using BitirmeProjesi.Core.DTOs.ScanDtos;
+using BitirmeProjesi.Core.DTOs.UserDtos;
 using BitirmeProjesi.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -73,7 +73,8 @@ namespace BitirmeProjesi.API.Controllers
         [HttpPost("scan")]
         public async Task<IActionResult> Scan(ScanDto scan)
         {
-            return Ok(_mapper.Map<StoreScanDto>(await _storeService.GetStoresWithBarcode(scan.Barcode, scan.Longitude, scan.Latitude)));
+
+            return Ok(await _storeService.GetStoresWithBarcode(scan.Barcode, scan.Longitude, scan.Latitude));
         }
 
         [Authorize]

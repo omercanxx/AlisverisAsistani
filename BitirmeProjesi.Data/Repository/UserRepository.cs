@@ -1,4 +1,5 @@
-﻿using BitirmeProjesi.Core.Entities;
+﻿using AutoMapper;
+using BitirmeProjesi.Core.Entities;
 using BitirmeProjesi.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace BitirmeProjesi.Data.Repository
 {
     public class UserRepository : CustomRepository<ApplicationUser>, IUserRepository
+        
     {
         private AppDbContext _appDbContext { get => _context as AppDbContext; }
         public UserRepository(AppDbContext context) : base(context)

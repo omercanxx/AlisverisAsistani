@@ -10,6 +10,7 @@ namespace BitirmeProjesi.Core.Services
     public interface IUserService : ICustomService<ApplicationUser>
     {
         Task<List<Product>> GetMyFavoriteProducts();
+        Task<Guid> GetMyUserId();
         Task<List<Product>> GetMyCommentedProducts();
         Task<List<Product>> GetMyScannedProducts();
         Task<Guid> AddFavoriteProduct(Guid productId);

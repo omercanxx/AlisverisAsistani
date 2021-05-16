@@ -1,4 +1,5 @@
-﻿using BitirmeProjesi.Core.Repositories;
+﻿using AutoMapper;
+using BitirmeProjesi.Core.Repositories;
 using BitirmeProjesi.Core.UnitOfWorks;
 using BitirmeProjesi.Data.Repository;
 using System;
@@ -10,7 +11,8 @@ namespace BitirmeProjesi.Data.UnitOfWorks
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private AppDbContext _context; 
+        private AppDbContext _context;
+        private IMapper _mapper;
         private StoreRepository _storeRepository;
         private ImageRepository _imageRepository;
         private UserRepository _userRepository;

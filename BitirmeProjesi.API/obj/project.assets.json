@@ -3318,6 +3318,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "AutoMapper": "9.0.0",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.1",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
@@ -3334,6 +3335,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "AutoMapper": "9.0.0",
           "BitirmeProjesi.Core": "1.0.0",
           "DocumentFormat.OpenXml": "2.12.3",
           "EntityFramework": "6.4.4",

@@ -146,8 +146,6 @@ C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcorea
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
-C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\obj\Debug\netcoreapp3.1\BitirmeProjesi.API.csproj.CoreCompileInputs.cache
-C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\obj\Debug\netcoreapp3.1\BitirmeProjesi.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\Elasticsearch.Net.dll
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
@@ -159,3 +157,5 @@ C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcorea
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\obj\Debug\netcoreapp3.1\BitirmeProjesi.API.csproj.CoreCompileInputs.cache
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\obj\Debug\netcoreapp3.1\BitirmeProjesi.API.MvcApplicationPartsAssemblyInfo.cache

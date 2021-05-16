@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "saYsvLjdWtSO2jSgMRmt7aPc3BvBMU/nH31maV2GGjCF6N349AaQ6KftlYvuaGxcFugVZg6blbAWFFHrtkZSnw==",
+  "dgSpecHash": "K7DmGgdmlaEgSh+l/nULOyk/Wv5ersgRhv3JnjbqlIdLEh4N7SyQ1OkJc6FZzS8yQg/x53uwAh6deRlh0bxXag==",
   "success": true,
   "projectFilePath": "C:\\Users\\omer6\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.Data\\BitirmeProjesi.Data.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\omer6\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\omer6\\.nuget\\packages\\documentformat.openxml\\2.12.3\\documentformat.openxml.2.12.3.nupkg.sha512",
     "C:\\Users\\omer6\\.nuget\\packages\\elasticsearch.net\\7.12.1\\elasticsearch.net.7.12.1.nupkg.sha512",
     "C:\\Users\\omer6\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",

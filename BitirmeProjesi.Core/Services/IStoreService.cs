@@ -1,4 +1,5 @@
-﻿using BitirmeProjesi.Core.Entities;
+﻿using BitirmeProjesi.Core.DTOs;
+using BitirmeProjesi.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,6 @@ namespace BitirmeProjesi.Core.Services
     {
         Task<Store> GetWithProductsByIdAsync(int storeId);
         Task<Store> GetWithCitiesByIdAsync(int storeId);
-        Task<Store> GetStoresWithBarcode(string barcode, double longtitude, double latitude);
+        Task<StoreScanDto> GetStoresWithBarcode(string barcode, double longtitude, double latitude);
     }
 }

@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using BitirmeProjesi.API.Mapping;
+using BitirmeProjesi.Core.Mapping;
 using BitirmeProjesi.Core.Entities;
 using BitirmeProjesi.Core.Repositories;
 using BitirmeProjesi.Core.Services;
@@ -51,7 +52,12 @@ namespace BitirmeProjesi.API
             services.AddTransient<ProductService>();
             services.AddTransient<StoreService>();
 
-            services.AddAutoMapper(typeof(Startup));
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MapProfile());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(ICustomRepository<>), typeof(CustomRepository<>));
             services.AddScoped(typeof(ICustomService<>), typeof(CustomService<>));
@@ -95,9 +101,6 @@ namespace BitirmeProjesi.API
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                     };
                 });
-
-            
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

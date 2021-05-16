@@ -1,14 +1,18 @@
-﻿using BitirmeProjesi.API.Exceptions;
+﻿using AutoMapper;
+using BitirmeProjesi.API.Exceptions;
 using BitirmeProjesi.Core.Entities;
 using BitirmeProjesi.Core.Repositories;
 using BitirmeProjesi.Core.Services;
 using BitirmeProjesi.Core.UnitOfWorks;
+using BitirmeProjesi.Core.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
+using BitirmeProjesi.Core.DTOs.ScanDtos;
 
 namespace BitirmeProjesi.Service.Services
 {
@@ -16,10 +20,12 @@ namespace BitirmeProjesi.Service.Services
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public StoreService(IUnitOfWork unitOfWork, ICustomRepository<Store> repository, IHttpContextAccessor httpContextAccessor, UserManager<ApplicationUser> userManager) : base(unitOfWork, repository)
+        private readonly IMapper _mapper;
+        public StoreService(IUnitOfWork unitOfWork, ICustomRepository<Store> repository, IHttpContextAccessor httpContextAccessor, UserManager<ApplicationUser> userManager, IMapper mapper) : base(unitOfWork, repository)
         {
             _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         public Task<Store> GetWithCitiesByIdAsync(int storeId)
@@ -31,7 +37,7 @@ namespace BitirmeProjesi.Service.Services
         {
             throw new NotImplementedException();
         }
-        public async Task<Store> GetStoresWithBarcode(string barcode, double longtitude, double latitude)
+        public async Task<StoreScanDto> GetStoresWithBarcode(string barcode, double longtitude, double latitude)
         {
             //Store Bilgisi
             var dbStores = await _unitOfWork.Products.GetStoresWithBarcode(barcode);
@@ -44,11 +50,16 @@ namespace BitirmeProjesi.Service.Services
             if (dbProduct == null)
                 throw new CustomException("Ürün bulunamadı");
 
-            if(_httpContextAccessor.HttpContext.User.Identity.Name != null)
+
+            var x = await _unitOfWork.Stores.GetWithProductsByIdAsync(dbClosestStore.Id, dbProduct.ProductNo);
+
+            var scanDto = _mapper.Map<StoreScanDto>(x);
+            if (_httpContextAccessor.HttpContext.User.Identity.Name != null)
             {
                 var dbUser = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
                 if (dbUser == null)
                     throw new CustomException("Kullanıcı bulunamadı");
+
                 Scan scan = new Scan()
                 {
                     StoreId = dbClosestStore.Id,
@@ -56,6 +67,17 @@ namespace BitirmeProjesi.Service.Services
                     UserId = dbUser.Id
                 };
                 await _unitOfWork.Scans.AddAsync(scan);
+
+                foreach (var item in scanDto.Products)
+                {
+                    foreach (var i in item.Favorites)
+                    {
+                        if (i.UserId == dbUser.Id)
+                        {
+                            item.IsLiked = true;
+                        }
+                    }
+                }
             }
             //User Bilgisi
             else
@@ -68,14 +90,12 @@ namespace BitirmeProjesi.Service.Services
                 await _unitOfWork.Scans.AddAsync(scan);
             }
 
-            //Logging
 
 
-            
+
             await _unitOfWork.CommitAsync();
 
-
-            return await _unitOfWork.Stores.GetWithProductsByIdAsync(dbClosestStore.Id, dbProduct.ProductNo);
+            return scanDto;
         }
     }
 }

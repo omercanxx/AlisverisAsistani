@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using BitirmeProjesi.API.DTOs;
+using BitirmeProjesi.Core.DTOs;
 using BitirmeProjesi.Core.Entities;
 using BitirmeProjesi.Core.Services;
 using Microsoft.AspNetCore.Http;

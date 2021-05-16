@@ -81,5 +81,13 @@ namespace BitirmeProjesi.Service.Services
             await _unitOfWork.CommitAsync();
             return user.Id;
         }
+
+        public async Task<Guid> GetMyUserId()
+        {
+            var user = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
+            if (user == null)
+                throw new CustomException("Kullanıcı bulunamadı");
+            return user.Id;
+        }
     }
 }
