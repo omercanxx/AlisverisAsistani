@@ -157,5 +157,11 @@ C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcorea
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\Serilog.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\Microsoft.Azure.Services.AppAuthentication.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\Serilog.Sinks.MSSqlServer.dll
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\bin\Debug\netcoreapp3.1\Serilog.Sinks.PeriodicBatching.dll
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\obj\Debug\netcoreapp3.1\BitirmeProjesi.API.csproj.CoreCompileInputs.cache
+C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\obj\Debug\netcoreapp3.1\BitirmeProjesi.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\omer6\source\repos\BitirmeProjesi\BitirmeProjesi.API\obj\Debug\netcoreapp3.1\BitirmeProjesi.API.MvcApplicationPartsAssemblyInfo.cache

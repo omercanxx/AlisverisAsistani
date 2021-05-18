@@ -30,6 +30,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using BitirmeProjesi.Data.Infrastructure.Extensions;
 
 namespace BitirmeProjesi.API
 {
@@ -109,6 +110,7 @@ namespace BitirmeProjesi.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseApiExceptionHandling();
             }
 
             //app.UseHttpsRedirection();
@@ -122,6 +124,7 @@ namespace BitirmeProjesi.API
                 endpoints.MapControllers();
             });
             CreateUserRoles(userManager, roleManager);
+
         }
 
         private static void CreateUserRoles(UserManager<ApplicationUser> userManager, RoleManager<UserRoles> roleManager)

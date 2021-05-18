@@ -3,6 +3,7 @@ using BitirmeProjesi.Core.Entities;
 using BitirmeProjesi.Core.Repositories;
 using BitirmeProjesi.Core.Services;
 using BitirmeProjesi.Core.UnitOfWorks;
+using BitirmeProjesi.Data.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -36,7 +37,7 @@ namespace BitirmeProjesi.Service.Services
             JwtSecurityToken token = null;
             var user = await _userManager.FindByNameAsync(username);
             if (user == null || await _userManager.CheckPasswordAsync(user, password) == false)
-                throw new CustomException("Kullanıcı adı veya şifre hatalı");
+                throw new DomainException("Kullanıcı adı veya şifre hatalı");
             var userRoles = await _userManager.GetRolesAsync(user);
 
             var authClaims = new List<Claim>
