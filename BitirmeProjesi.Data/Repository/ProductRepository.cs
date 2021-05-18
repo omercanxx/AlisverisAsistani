@@ -71,5 +71,16 @@ namespace BitirmeProjesi.Data.Repository
             var stores = product.Product_Store.Select(ps => ps.Store).ToList();
             return stores;
         }
+        public async Task<List<Product>> GetMyCommentedProducts(Guid userId)
+        {
+            var dbProducts = await appDbContext.Products
+                .Include(pc => pc.ProductComments)
+                .Include(p => p.Product_Image)
+                .ThenInclude(pi => pi.Image)
+                .Where(x => x.IsActive == true && x.ProductComments.Any(x => x.IsActive == true && x.UserId == userId)).ToListAsync();
+
+
+            return dbProducts;
+        }
     }
 }

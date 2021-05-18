@@ -16,5 +16,6 @@ namespace BitirmeProjesi.Core.Repositories
         Task<Product> GetWithProductTypesByIdAsync(Guid productId);
         Task<Product> GetProductByBarcodeAsync(string barcode);
         Task<IEnumerable<Store>> GetStoresWithBarcode(string barcode);
+        Task<List<Product>> GetMyCommentedProducts(Guid userId);
     }
 }

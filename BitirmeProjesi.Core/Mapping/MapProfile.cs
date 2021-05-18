@@ -52,7 +52,8 @@ namespace BitirmeProjesi.Core.Mapping
 
             #region CommentedProucts
             CreateMap<Product, CommentedProductDto>()
-                .ForMember(opt => opt.ProductImage, dest => dest.MapFrom(x => x.Product_Image.Select(pi => pi.Image).OrderBy(i => i.Sort).FirstOrDefault()));
+                .ForMember(opt => opt.ProductImage, dest => dest.MapFrom(x => x.Product_Image.Select(pi => pi.Image).OrderBy(i => i.Sort).FirstOrDefault()))
+                .ForMember(opt => opt.ProductComments, dest => dest.MapFrom(x => x.ProductComments));
             CreateMap<Image, CommentedProductImageDto>();
             #endregion
 
@@ -73,6 +74,7 @@ namespace BitirmeProjesi.Core.Mapping
             CreateMap<ProductComment, ProductCommentDto>()
                 .ForMember(opt => opt.Username, dest => dest
                 .MapFrom(pc => (pc.IsAnonym == true) ? pc.User.UserName.Substring(0, 2).PadRight(pc.User.UserName.Length, '*') : pc.User.UserName));
+            CreateMap<ProductComment, ProductCommentSummaryDto>();
             #endregion
 
             #region Users

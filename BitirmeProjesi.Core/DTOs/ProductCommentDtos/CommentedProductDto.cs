@@ -9,6 +9,9 @@ namespace BitirmeProjesi.Core.DTOs.ProductCommentDtos
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public int Color { get; set; }
+        public int Size { get; set; }
         public CommentedProductImageDto ProductImage { get; set; }
+        public List<ProductCommentSummaryDto> ProductComments { get; set; }
     }
 }

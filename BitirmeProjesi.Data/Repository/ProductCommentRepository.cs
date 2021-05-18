@@ -20,16 +20,5 @@ namespace BitirmeProjesi.Data.Repository
             return await _appDbContext.ProductComments.Include(pc => pc.User).Where(pc => pc.ProductId == productId).ToListAsync();
 
         }
-        public async Task<List<Product>> GetMyCommentedProducts(Guid userId)
-        {
-            var dbProductComments = await _appDbContext.ProductComments
-                .Include(pc => pc.Product)
-                .ThenInclude(p => p.Product_Image)
-                .ThenInclude(pi => pi.Image)
-                .Where(u => u.UserId == userId && u.IsActive == true).ToListAsync();
-
-            var products = dbProductComments.Select(pc => pc.Product).ToList();
-            return products;
-        }
     }
 }

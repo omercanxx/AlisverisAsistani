@@ -10,6 +10,8 @@ namespace BitirmeProjesi.Core.DTOs.ScanDtos
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public int Color { get; set; }
+        public int Size { get; set; }
         public ScannedProductImageDto ProductImage { get; set; }
     }
 }

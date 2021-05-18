@@ -46,7 +46,9 @@ namespace BitirmeProjesi.Service.Services
             var user = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
             if (user == null)
                 throw new CustomException("Kullanıcı bulunamadı");
-            return await _unitOfWork.ProductComments.GetMyCommentedProducts(user.Id);
+            var dbProducts = await _unitOfWork.Products.GetMyCommentedProducts(user.Id);
+            
+            return dbProducts;
         }
         public async Task<List<Product>> GetMyScannedProducts()
         {
