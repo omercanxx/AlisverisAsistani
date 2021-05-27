@@ -19,7 +19,7 @@ namespace BitirmeProjesi.Core.DTOs.ScanDtos
         public string ProductNo { get; set; }
         public int LikeNumber { get; set; }
         public int ScanNumber { get; set; }
-        public bool IsLiked { get; set; }
+        public string Liked { get; set; }
         public List<ProductImagesScanDto> ProductImages { get; set; }
         public List<FavoriteProductsScanDto> Favorites { get; set; }
         public List<ProductCommentScanDto> ProductComments { get; set; }

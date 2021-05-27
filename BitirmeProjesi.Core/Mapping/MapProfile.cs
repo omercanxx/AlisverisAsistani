@@ -29,7 +29,7 @@ namespace BitirmeProjesi.Core.Mapping
                 .ForMember(opt => opt.Favorites, dest => dest.MapFrom(x => x.User_FavoriteProduct))
                 .ForMember(opt => opt.LikeNumber, dest => dest.MapFrom(x => x.User_FavoriteProduct.Count))
                 .ForMember(opt => opt.ScanNumber, dest => dest.MapFrom(x => x.Scans.Count));
-
+                
             CreateMap<ApplicationUser_FavoriteProduct, FavoriteProductsScanDto>();
             CreateMap<Image, ProductImagesScanDto>();
             CreateMap<ProductComment, ProductCommentScanDto>()

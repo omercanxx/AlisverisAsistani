@@ -73,9 +73,9 @@ namespace BitirmeProjesi.Service.Services
                     foreach (var i in item.Favorites)
                     {
                         if (i.UserId == dbUser.Id)
-                        {
-                            item.IsLiked = true;
-                        }
+                            item.Liked = "true";
+                        else
+                            item.Liked = "false";
                     }
                 }
             }

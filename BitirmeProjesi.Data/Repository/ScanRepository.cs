@@ -21,7 +21,11 @@ namespace BitirmeProjesi.Data.Repository
                 .Include(s => s.Product)
                 .ThenInclude(p => p.Product_Image)
                 .ThenInclude(pi => pi.Image).Where(s => s.UserId == userId).ToList();
-            return dbScans.Select(s => s.Product).ToList();
+            var dbProducts = dbScans.Select(s => s.Product).ToList();
+            dbProducts = dbProducts.GroupBy(x => x)
+                                    .Where(g => g.Count() > 1)
+                                    .Select(x => x.Key).ToList();
+            return dbProducts;
         }
     }
 }
