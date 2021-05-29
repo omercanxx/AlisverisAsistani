@@ -23,6 +23,15 @@ namespace BitirmeProjesi.Data.Repository
                 .Include(p => p.Product_Image).ThenInclude(p => p.Image)
                 .SingleOrDefaultAsync(x => x.Id == productId);
         }
+        public async Task<Product> GetProductAsync(string productNo, int color, int size)
+        {
+            var dbProducts = await appDbContext.Products
+                .Include(p => p.Product_Store)
+                .ThenInclude(ps => ps.Store)
+                .Where(p => p.ProductNo == productNo).ToListAsync();
+
+            return dbProducts.SingleOrDefault(x => x.Color == color && x.Size == size);
+        }
         public async Task<Product> GetWithCategoriesByIdAsync(Guid productId)
         {
             return await appDbContext.Products

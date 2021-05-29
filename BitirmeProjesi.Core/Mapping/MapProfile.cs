@@ -40,8 +40,6 @@ namespace BitirmeProjesi.Core.Mapping
                 .ForMember(opt => opt.ProductImage, dest => dest.MapFrom(x => x.Product_Image.Select(pi => pi.Image).OrderBy(i => i.Sort).FirstOrDefault()));
             CreateMap<Image, ScannedProductImageDto>();
 
-            CreateMap<Store, StoreScanDto>()
-                .ForMember(opt => opt.Products, dest => dest.MapFrom(x => x.Product_Store.Select(ps => ps.Product)));
             #endregion
 
             #region FavoriteProducts
@@ -88,6 +86,12 @@ namespace BitirmeProjesi.Core.Mapping
             CreateMap<ApplicationUser, UserWithFavoriteProductsDto>();
             CreateMap<UserWithFavoriteProductsDto, ApplicationUser>();
 
+            #endregion
+
+            #region Stores
+            CreateMap<Store, StoreScanDto>()
+                .ForMember(opt => opt.Products, dest => dest.MapFrom(x => x.Product_Store.Select(ps => ps.Product)));
+            CreateMap<Store, MapDto>();
             #endregion
         }
     }

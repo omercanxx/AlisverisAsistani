@@ -9,7 +9,7 @@ namespace BitirmeProjesi.Core.Services
 {
     public interface IStoreService : ICustomService<Store>
     {
-        Task<Store> GetWithProductsByIdAsync(int storeId);
+        Task<List<Store>> GetStoresWithProductsAsync(string productNo, int color, int size);
         Task<Store> GetWithCitiesByIdAsync(int storeId);
         Task<StoreScanDto> GetStoresWithBarcode(string barcode, double longtitude, double latitude);
     }

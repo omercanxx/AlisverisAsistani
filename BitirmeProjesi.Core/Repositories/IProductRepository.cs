@@ -9,6 +9,7 @@ namespace BitirmeProjesi.Core.Repositories
     public interface IProductRepository : ICustomRepository<Product>
     {
         Task<Product> GetProductAsync(Guid productId);
+        Task<Product> GetProductAsync(string productNo, int color, int size);
         Task<Product> GetWithCategoriesByIdAsync(Guid productId);
         Task<IEnumerable<Product>> GetWithStoresByIdAsync(Guid productId);
         Task<Product> GetWithCommentsByIdAsync(Guid productId);

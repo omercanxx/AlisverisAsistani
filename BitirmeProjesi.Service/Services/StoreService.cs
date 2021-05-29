@@ -33,9 +33,10 @@ namespace BitirmeProjesi.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<Store> GetWithProductsByIdAsync(int storeId)
+        public async Task<List<Store>> GetStoresWithProductsAsync(string productNo, int color, int size)
         {
-            throw new NotImplementedException();
+            var dbProduct = await _unitOfWork.Products.GetProductAsync(productNo, color, size);
+            return dbProduct.Product_Store.Select(x => x.Store).ToList();
         }
         public async Task<StoreScanDto> GetStoresWithBarcode(string barcode, double longtitude, double latitude)
         {
@@ -73,9 +74,7 @@ namespace BitirmeProjesi.Service.Services
                     foreach (var i in item.Favorites)
                     {
                         if (i.UserId == dbUser.Id)
-                            item.Liked = "true";
-                        else
-                            item.Liked = "false";
+                            item.Liked = true;
                     }
                 }
             }
