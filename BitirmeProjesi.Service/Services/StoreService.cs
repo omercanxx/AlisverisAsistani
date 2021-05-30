@@ -52,9 +52,18 @@ namespace BitirmeProjesi.Service.Services
                 throw new CustomException("Ürün bulunamadı");
 
 
-            var x = await _unitOfWork.Stores.GetWithProductsByIdAsync(dbClosestStore.Id, dbProduct.ProductNo);
 
-            var scanDto = _mapper.Map<StoreScanDto>(x);
+            var scanDto = _mapper.Map<StoreScanDto>(await _unitOfWork.Stores.GetWithProductsByIdAsync(dbClosestStore.Id, dbProduct.ProductNo));
+
+            foreach(var product in scanDto.Products)
+            {
+                if (!scanDto.Sizes.Contains(product.Size))
+                    scanDto.Sizes.Add(product.Size);
+
+                if (!scanDto.Colors.Contains(product.Color))
+                    scanDto.Colors.Add(product.Color);
+            }
+
             if (_httpContextAccessor.HttpContext.User.Identity.Name != null)
             {
                 var dbUser = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User?.Identity?.Name);
@@ -89,12 +98,26 @@ namespace BitirmeProjesi.Service.Services
                 await _unitOfWork.Scans.AddAsync(scan);
             }
 
-
-
-
             await _unitOfWork.CommitAsync();
 
             return scanDto;
+        }
+        public async Task<List<int>> GetSizesWithColor(Guid storeId, string productNo, int color)
+        {
+            var dbProducts = await _unitOfWork.Stores.GetProductsWithColorAsync(storeId, productNo, color);
+            List<int> sizes = new List<int>();
+            foreach (var product in dbProducts)
+            {
+                if (!sizes.Contains(product.Size))
+                    sizes.Add(product.Size);
+            }
+            return sizes;
+        }
+
+        public async Task<List<Product>> GetColorsWithSize(Guid storeId, string productNo, int size)
+        {
+            return await _unitOfWork.Stores.GetProductsWithSizeAsync(storeId, productNo, size);
+            
         }
     }
 }

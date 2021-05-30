@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,11 +26,14 @@ namespace BitirmeProjesi.Core.Mapping
 
             CreateMap<Product, ProductScanDto>()
                 .ForMember(opt => opt.ProductComments, dest => dest.MapFrom(x => x.ProductComments))
-                .ForMember(opt => opt.ProductImages, dest => dest.MapFrom(x => x.Product_Image.Select(pi => pi.Image)))
+                .ForMember(opt => opt.ProductImages, dest => dest.MapFrom(x => x.Product_Image.Select(pi => pi.Image).OrderBy(i => i.Sort)))
                 .ForMember(opt => opt.Favorites, dest => dest.MapFrom(x => x.User_FavoriteProduct))
                 .ForMember(opt => opt.LikeNumber, dest => dest.MapFrom(x => x.User_FavoriteProduct.Count))
                 .ForMember(opt => opt.ScanNumber, dest => dest.MapFrom(x => x.Scans.Count));
-                
+
+            CreateMap<Product, ColorDto>()
+                .ForMember(opt => opt.ProductImages, dest => dest.MapFrom(x => x.Product_Image.Select(pi => pi.Image).OrderBy(i => i.Sort)));
+
             CreateMap<ApplicationUser_FavoriteProduct, FavoriteProductsScanDto>();
             CreateMap<Image, ProductImagesScanDto>();
             CreateMap<ProductComment, ProductCommentScanDto>()

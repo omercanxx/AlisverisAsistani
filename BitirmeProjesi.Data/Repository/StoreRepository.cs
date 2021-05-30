@@ -28,11 +28,34 @@ namespace BitirmeProjesi.Data.Repository
                 .Include(p => p.Product_Store).ThenInclude(pt => pt.Product).ThenInclude(p => p.Scans)
                 .Include(p => p.Product_Store).ThenInclude(pt => pt.Product).ThenInclude(p => p.User_FavoriteProduct)
                 .SingleOrDefaultAsync(x => x.Id == storeId);
+
             //Gönderilen productNo ile bir filtreleme işlemi yapılıyor.
             dbStore.Product_Store = dbStore.Product_Store.Where(p => p.Product.ProductNo == productNo).ToList();
             return dbStore;
         }
+        public async Task<List<Product>> GetProductsWithColorAsync(Guid storeId, string productNo, int color)
+        {
+            var dbStore = await appDbContext.Stores
+                .Include(p => p.Product_Store).ThenInclude(pt => pt.Product)
+                .SingleOrDefaultAsync(x => x.Id == storeId);
 
+            //Gönderilen productNo ve color ile bir filtreleme işlemi yapılıyor.
+            dbStore.Product_Store = dbStore.Product_Store.Where(p => p.Product.ProductNo == productNo && p.Product.Color == color).ToList();
+            return dbStore.Product_Store.Select(x => x.Product).ToList();
+        }
+        public async Task<List<Product>> GetProductsWithSizeAsync(Guid storeId, string productNo, int size)
+        {
+            var dbStore = await appDbContext.Stores
+                .Include(p => p.Product_Store)
+                .ThenInclude(pt => pt.Product)
+                .ThenInclude(p => p.Product_Image)
+                .ThenInclude(pi => pi.Image)
+                .SingleOrDefaultAsync(x => x.Id == storeId);
+
+            //Gönderilen productNo ve size ile bir filtreleme işlemi yapılıyor.
+            dbStore.Product_Store = dbStore.Product_Store.Where(p => p.Product.ProductNo == productNo && p.Product.Size == size).ToList();
+            return dbStore.Product_Store.Select(x => x.Product).ToList();
+        }
         public async Task<Store> GetClosestStoreAsync(IEnumerable<Store> stores, double longtitude, double latitude)
         {
             var storesWithDistances = stores.Select(x => new {

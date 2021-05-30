@@ -83,11 +83,7 @@ namespace BitirmeProjesi.API.Controllers
         {
             return Ok(_mapper.Map<List<ScannedProductDto>>(await _userService.GetMyScannedProducts()));
         }
-        [HttpPost("map")]
-        public async Task<IActionResult> GetStoresWithProductModel(MapPostDto map)
-        {
-            return Ok(_mapper.Map<List<MapDto>>(await _storeService.GetStoresWithProductsAsync(map.ProductNo, map.Color, map.Size)));
-        }
+
         #endregion
     }
 }
